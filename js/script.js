@@ -272,118 +272,52 @@ $(window).on('load', function () {
 
 
 
-
-/* ==============================================================
-                        Form Control Logic
-================================================================*/
-
-
-// $(window).on('load', function () {
-//     const form = $(".needs-validation");
-
-//     form.on("submit", function (e) {
-//         console.log(form)
-//         if (!form.checkValidity()) {
-//             e.preventDefault();
-//         } else {
-//             alert("Success");
-//         }
-//         form.addClass("was-validated");
-
-//     });
-// });
-
-// $(document).ready(function () {
-//     const form = $(".needs-validation");
-
-//     // Form submit handler
-//     form.on("submit", function (e) {
-//         if (!form[0].checkValidity()) {
-//             e.preventDefault();
-//         } else {
-//             alert("success");
-//         }
-//         form.addClass("was-validated");
-//         console.log(getEmailValue()); // Assuming getEmailValue() is a function defined elsewhere
-//     });
-
-//     // Input change handler
-//     const formControls = form.find("input, select");
-//     formControls.on("input", function () {
-//         const formControl = $(this);
-//         if (formControl[0].checkValidity()) {
-//             formControl.addClass("valid-feedback")
-//             formControl.removeClass("invalid-feedback");
-//         } else {
-//             formControl.addClass("invalid-feedback")
-//             formControl.removeClass("valid-feedback");
-//         }
-//     });
-
-//     // Function to check form validity and update submit button state
-//     function checkFormValidity() {
-//         const submitBtn = $("#submit-button");
-//         if (form[0].checkValidity()) {
-//             submitBtn.prop("disabled", false);
-//         } else {
-//             submitBtn.prop("disabled", true);
-//         }
-//     }
-
-//     // Attach the checkFormValidity function to the input event of all form controls
-//     const formControlsAll = form.find("input, textarea, select");
-//     formControlsAll.on("input", checkFormValidity);
-
-//     // Initial check to set the button state on page load
-//     checkFormValidity();
-// });
-
 $(document).ready(function () {
-    const $form = $(".needs-validation");
+    const form = $(".needs-validation");
 
     // Form submit handler
-    $form.on("submit", function (e) {
-        if (!$form[0].checkValidity()) {
+    form.on("submit", function (e) {
+        if (!form[0].checkValidity()) {
             e.preventDefault();
             e.stopPropagation();
         } else {
             alert("Success!");
         }
-        $form.addClass("was-validated");
-        console.log(getEmailValue()); // Assuming getEmailValue() is a function defined elsewhere
+        form.addClass("was-validated");
+        console.log(getEmailValue());
     });
 
     // Input change handler
-    const $formControls = $form.find("input, select, textarea");
-    $formControls.on("input", function () {
-        const $formControl = $(this);
-        const $validFeedback = $formControl.siblings(".valid-feedback");
-        const $invalidFeedback = $formControl.siblings(".invalid-feedback");
+    const formControls = form.find("input, select, textarea");
+    formControls.on("input", function () {
+        const formControl = $(this);
+        const validFeedback = formControl.siblings(".valid-feedback");
+        const invalidFeedback = formControl.siblings(".invalid-feedback");
 
-        if ($formControl[0].checkValidity()) {
-            $formControl.addClass("is-valid").removeClass("is-invalid");
-            $validFeedback.text("Looks Good");
-            $invalidFeedback.text("");
+        if (formControl[0].checkValidity()) {
+            formControl.addClass("is-valid").removeClass("is-invalid");
+            validFeedback.text("Looks Good");
+            invalidFeedback.text("");
         } else {
-            $formControl.addClass("is-invalid").removeClass("is-valid");
-            const placeholder = $formControl.attr("placeholder") || $formControl.find("option:selected").text() || "value";
-            $invalidFeedback.text("Invalid " + placeholder);
-            $validFeedback.text("");
+            formControl.addClass("is-invalid").removeClass("is-valid");
+            const placeholder = formControl.attr("placeholder") || formControl.find("option:selected").text() || "value";
+            invalidFeedback.text("Invalid " + placeholder);
+            validFeedback.text("");
         }
     });
 
     // Function to check form validity and update submit button state
     function checkFormValidity() {
-        const $submitBtn = $("#submit-button");
-        if ($form[0].checkValidity()) {
-            $submitBtn.prop("disabled", false);
+        const submitBtn = $("#submit-button");
+        if (form[0].checkValidity()) {
+            submitBtn.prop("disabled", false);
         } else {
-            $submitBtn.prop("disabled", true);
+            submitBtn.prop("disabled", true);
         }
     }
 
     // Attach the checkFormValidity function to the input event of all form controls
-    $formControls.on("input", checkFormValidity);
+    formControls.on("input", checkFormValidity);
 
     // Initial check to set the button state on page load
     checkFormValidity();
