@@ -271,6 +271,9 @@ $(window).on('load', function () {
 });
 
 
+/* ==============================================================
+                        Contact Form Validation
+================================================================*/
 
 $(document).ready(function () {
     const form = $(".needs-validation");
